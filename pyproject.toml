@@ -1,26 +1,80 @@
-
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
 [project]
 name = "plasma-toolkit"
 version = "1.0.0"
-description = "Modular toolkit for Paschen and streamer analysis with overlays and uncertainty bands."
-authors = [{name = "Your Name"}]
-license = {text = "MIT License"}
+description = "Modular toolkit for Paschen and streamer analysis with overlays, uncertainty bands, and docs/CI workflows."
+readme = "README.md"
+authors = [{ name = "Tsoumpis Spiros" }]
+license = { text = "MIT License" }
 requires-python = ">=3.9"
-dependencies = ["numpy", "pandas", "matplotlib"]
+dependencies = [
+  "numpy>=1.22",
+  "pandas>=1.4",
+  "matplotlib>=3.6",
+]
 
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.urls]
+Homepage = "https://github.com/Tsoympet/plasma-toolkit"
+Repository = "https://github.com/Tsoympet/plasma-toolkit"
+Issues = "https://github.com/Tsoympet/plasma-toolkit/issues"
+Documentation = "https://Tsoympet.github.io/plasma-toolkit/"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "ruff>=0.6.0",
+  "black>=24.3.0",
+  "mypy>=1.10.0",
+  "build>=1.2.1",
+  "twine>=5.0.0",
+  "pre-commit>=3.7.0",
+]
+docs = [
+  "sphinx>=7.0",
+  "sphinx-rtd-theme>=2.0.0",
+  "nbsphinx>=0.9.3",
+  "ipykernel>=6.0",
+  "sphinxcontrib-svg2pdfconverter>=1.2.2",
+]
+
+# ----------------------------
+# setuptools configuration
+# ----------------------------
+
+[tool.setuptools.packages.find]
+include = ["plasma_toolkit*"]
+exclude = ["data", "docs", "examples", ".github", "tests", "scripts"]
+
+[tool.setuptools.package-data]
+plasma_toolkit = [
+  "data/*.csv",
+  "data/*.json",
+]
+
+# ----------------------------
+# Developer tooling
+# ----------------------------
 
 [tool.black]
 line-length = 100
-target-version = ["py39","py310","py311"]
+target-version = ["py39", "py310", "py311"]
 
 [tool.ruff]
 line-length = 100
 target-version = "py39"
-select = ["E","F","I","UP"]
-ignore = ["E501"]  # handled by black
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]
 exclude = ["docs/_build"]
 
 [tool.mypy]
