@@ -1,0 +1,33 @@
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "plasma-toolkit"
+version = "1.0.0"
+description = "Modular toolkit for Paschen and streamer analysis with overlays and uncertainty bands."
+authors = [{name = "Your Name"}]
+license = {text = "MIT License"}
+requires-python = ">=3.9"
+dependencies = ["numpy", "pandas", "matplotlib"]
+
+
+[tool.black]
+line-length = 100
+target-version = ["py39","py310","py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+select = ["E","F","I","UP"]
+ignore = ["E501"]  # handled by black
+exclude = ["docs/_build"]
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unreachable = true
+show_error_codes = true
+exclude = "docs/_build"
